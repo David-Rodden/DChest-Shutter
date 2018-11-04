@@ -19,12 +19,14 @@ import java.util.stream.Collectors;
 
 @ScriptMeta(name = "DChest Shutter", category = ScriptCategory.OTHER, developer = "Dungeonqueer", desc = "Ruins drop parties")
 public class Shutter extends Script implements RenderListener {
-    private int ruinedChests;
+    private FrequencyForm frequencyForm;
+    private int ruinedChests, frequency;
     private List<String> embellishments, taunts;
     private Random random;
 
     @Override
     public void onStart() {
+        frequencyForm = new FrequencyForm(this);
         random = new Random();
         try {
             embellishments = new BufferedReader(new InputStreamReader(new URL("https://gist.githubusercontent.com/David-Rodden/b09dc8be2074c5ec2c9f4cf4cb7c1ef5/raw/a31ec8c7fea55583029a9e79cc5be2a91d1b7ce5/embellishments").openStream())).lines().collect(Collectors.toList());
@@ -38,12 +40,13 @@ public class Shutter extends Script implements RenderListener {
 
     @Override
     public int loop() {
+        if (!frequencyForm.hasCommenced()) return 1000;
         final SceneObject chest = findChest();
         if (chest == null) return 50;
         chest.interact("Shut");
         Time.sleepUntil(() -> findChest() == null, 500);
         if (findChest() == null) ruinedChests++;
-        if (taunts == null || random.nextInt(10) != 0) return 0;
+        if (taunts == null || !frequencyForm.isTauntEnabled() || random.nextInt(frequency) != 0) return 0;
         Keyboard.sendText(embellishments.get(random.nextInt(embellishments.size())) + taunts.get(random.nextInt(taunts.size())));
         Keyboard.pressEnter();
         return 0;
@@ -61,5 +64,9 @@ public class Shutter extends Script implements RenderListener {
         if (taunts != null) return;
         graphics.setColor(Color.RED);
         graphics.drawString("Taunts not set", 20, 30);
+    }
+
+    void setFrequency(final int frequency) {
+        this.frequency = frequency;
     }
 }
