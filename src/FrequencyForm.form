@@ -10,10 +10,12 @@
     <children>
       <component id="74d96" class="javax.swing.JSlider" binding="tauntFrequencySlider" default-binding="true">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="1" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <minimum value="10"/>
+          <maximum value="30"/>
+          <minimum value="2"/>
+          <value value="15"/>
         </properties>
       </component>
       <grid id="f69f1" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">

@@ -12,7 +12,7 @@ public class FrequencyForm extends JFrame {
     FrequencyForm(final Shutter shutter) {
         tauntFrequencySlider.addChangeListener(e -> {
             final int frequency = tauntFrequencySlider.getValue();
-            frequencyLabel.setText("Message frequency: " + (frequency == 10 ? "Very Quick" : frequency < 40 ? "Quick" : frequency == 100 ? "Very Slow" : frequency > 70 ? "Slow" : "Normal"));
+            frequencyLabel.setText("Message frequency: " + (frequency == 2 ? "Very Quick" : frequency < 8 ? "Quick" : frequency == 30 ? "Very Slow" : frequency > 18 ? "Slow" : "Normal"));
             shutter.setFrequency(frequency);
         });
         enableTauntsCheckBox.addChangeListener(e -> {
@@ -25,6 +25,7 @@ public class FrequencyForm extends JFrame {
             setVisible(false);
         });
         add(panel1);
+        tauntEnabled = true;
         panel1.setBackground(Color.WHITE);
         shutter.setFrequency(tauntFrequencySlider.getValue());
         commenced = false;
