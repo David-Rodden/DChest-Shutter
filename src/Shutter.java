@@ -30,7 +30,7 @@ public class Shutter extends Script implements RenderListener {
         random = new Random();
         try {
             embellishments = new BufferedReader(new InputStreamReader(new URL("https://gist.githubusercontent.com/David-Rodden/b09dc8be2074c5ec2c9f4cf4cb7c1ef5/raw/a31ec8c7fea55583029a9e79cc5be2a91d1b7ce5/embellishments").openStream())).lines().collect(Collectors.toList());
-            taunts = new BufferedReader(new InputStreamReader(new URL("https://gist.githubusercontent.com/David-Rodden/309d6299c6dcb0cd0413fea04162115a/raw/febe00c4b4efbceb38a5f14b7b8e309d44ad4d6c/taunts").openStream())).lines().collect(Collectors.toList());
+            taunts = new BufferedReader(new InputStreamReader(new URL("https://gist.githubusercontent.com/David-Rodden/309d6299c6dcb0cd0413fea04162115a/raw/ae5edd337cfa27f5cad7a42158df82b1a7ddfaa5/taunts").openStream())).lines().collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
         }
